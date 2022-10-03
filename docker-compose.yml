@@ -1,0 +1,28 @@
+version: "3.4"
+
+services:
+  myprojectfe:
+    container_name: myprojectfe
+    image: myprojectfe
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+      - 49153:49153
+      - 6005:6005
+    networks:
+      - zen_frontend
+    restart: always
+    command: npm run dev
+
+networks:
+  zen_frontend:
+    name: zen_frontend
+    driver: bridge
