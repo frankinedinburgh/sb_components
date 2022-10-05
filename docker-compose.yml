@@ -15,8 +15,7 @@ services:
       NODE_ENV: development
     ports:
       - 3000:3000
-      - 49153:49153
-      - 6005:6005
+      - 6006:6006
     networks:
       - zen_frontend
     restart: always
