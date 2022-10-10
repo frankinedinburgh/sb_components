@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import * as React from "react";
+import { FC, PropsWithChildren } from "react";
 import style from "./Stack.module.css";
 
-export const Stack: React.FC<StackProps> = ({
+export const Stack: FC<Partial<StackProps>> = ({
   children,
   spacing,
   wrap,
@@ -21,8 +21,7 @@ export const Stack: React.FC<StackProps> = ({
   </div>
 );
 
-interface StackProps {
-  children: React.ReactNode;
+interface StackProps extends PropsWithChildren {
   spacing: number;
   wrap: boolean;
   direction: "row" | "column";

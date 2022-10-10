@@ -1,5 +1,18 @@
-export default function WorkoutList({ post }) {
-  return <pre>{JSON.stringify(post, null, 4)}</pre>;
+import Link from "next/link";
+import Stack from "src/components/Containers/Stack";
+
+export default function Workouts({ post }) {
+  return (
+    <Stack direction="column">
+      <ul>
+        {post.map((p) => (
+          <li>
+            <Link href={`/workouts/${p.id}`}>{p.attributes.date}</Link>
+          </li>
+        ))}
+      </ul>
+    </Stack>
+  );
 }
 
 // This also gets called at build time
@@ -7,10 +20,9 @@ export async function getStaticProps() {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
   const res = await fetch(
-    "http://localhost:1337/api/workouts?populate=session&populate=exercises"
+    `${process.env.apiBaseUrl}/workouts?populate=session&populate=exercises&sort=date:desc`
   );
   const post = await res.json();
 
-  // Pass post data to the page via props
   return { props: { post: post.data } };
 }

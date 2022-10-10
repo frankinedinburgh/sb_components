@@ -233,3 +233,8 @@
     max-width: 100%;
   }
 }
+
+.row > div,
+.column > div {
+  background: var(--color-gray);
+}

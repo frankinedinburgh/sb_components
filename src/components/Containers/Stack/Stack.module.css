@@ -9,3 +9,8 @@
 .wrap {
   flex-wrap: "wrap";
 }
+
+.container > div {
+  background: var(--color-gray);
+  padding: min(15px, 8%);
+}

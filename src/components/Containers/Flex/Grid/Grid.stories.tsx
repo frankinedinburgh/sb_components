@@ -2,8 +2,15 @@ import Grid from ".";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "UI/Containers/Flex/Grid",
+  title: "Containers/Flex/Grid",
   component: Grid,
+  parameters: {
+    docs: {
+      description: {
+        component: "This Grid uses flexbox",
+      },
+    },
+  },
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

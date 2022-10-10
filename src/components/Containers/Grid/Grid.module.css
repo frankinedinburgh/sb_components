@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header"
+    "menu main main main right right"
+    "menu footer footer footer footer footer";
+  gap: 10px;
+}
+
+.container > div {
+  outline: 1px solid red;
+  background: var(--color-gray);
+}
+.grid-item-1 {
+  grid-area: header;
+}
+.grid-item-2 {
+  grid-area: menu;
+}
+.grid-item-3 {
+  grid-area: main;
+}
+.grid-item-4 {
+  grid-area: right;
+}
+.grid-item-5 {
+  grid-area: footer;
+}

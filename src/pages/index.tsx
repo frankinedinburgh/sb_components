@@ -1,23 +1,29 @@
 import Head from "next/head";
-import styles from "../styles/styles.module.scss";
+import Grid from "../components/Grid/Grid";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta charSet="utf-8" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <main>
-        <div className="wrapper">
-          <div className="box a">A</div>
-          <div className="box b">B</div>
-          <div className="box c">C</div>
-          <div className="box d">D</div>
-          <div className="box e">E</div>
-          <div className="box f">F</div>
-        </div>
+        <Grid row={true}>
+          <Grid column={true} sm={12} md={4}>
+            <h1>Column 1</h1>
+          </Grid>
+          <Grid column={true} sm={12} md={4}>
+            <h1>Column 2</h1>
+          </Grid>
+          <Grid column={true} sm={12} md={4}>
+            <h1>Column 3</h1>
+          </Grid>
+        </Grid>
       </main>
 
       <footer>

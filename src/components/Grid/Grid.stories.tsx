@@ -4,6 +4,13 @@ import Grid from "./Grid";
 export default {
   title: "UI/Grid",
   component: Grid,
+  parameters: {
+    docs: {
+      description: {
+        component: "This Grid uses flexbox",
+      },
+    },
+  },
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -25,4 +32,17 @@ Primary.args = {
       </Grid>
     </Grid>
   ),
+};
+
+export const Stretch = Template.bind({});
+Stretch.args = {
+  alignItems: "stretch",
+  column: true,
+  expanded: true,
+  justify: "space-between",
+  lg: 12,
+  md: 6,
+  row: false,
+  sm: 2,
+  children: Primary.args.children,
 };

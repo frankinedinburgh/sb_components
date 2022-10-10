@@ -1,0 +1,20 @@
+.article {
+  display: grid;
+  background-color: var(--color-gray);
+  padding: max(1em, 8px);
+  place-items: start stretch;
+}
+
+.article__footer {
+  display: grid;
+  grid-gap: max(1rem, 10px);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* place-items: start start; */
+}
+.article__footer > div {
+  /* grid-column: 1 / 1; */
+}
+
+.article * {
+  outline: 1px solid red;
+}

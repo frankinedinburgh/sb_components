@@ -1,7 +1,7 @@
 import Stack from ".";
 
 export default {
-  title: "UI/Containers/Stack",
+  title: "Containers/Stack",
   component: Stack,
 };
 
