@@ -9,6 +9,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
+    "storybook-addon-mock",
   ],
   framework: "@storybook/react",
   core: {
@@ -25,4 +26,8 @@ module.exports = {
     return config;
   },
   typescript: { reactDocgen: "none" },
+  env: (config) => ({
+    ...config,
+    apiBaseUrl: "http://warm-basin-81949.herokuapp.com/api",
+  }),
 };

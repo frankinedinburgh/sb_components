@@ -7,6 +7,6 @@ module.exports = {
     return config;
   },
   env: {
-    apiBaseUrl: "http://warm-basin-81949.herokuapp.com/api",
+    apiBaseUrl: "http://localhost:1337/api",
   },
 };

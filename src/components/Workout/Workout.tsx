@@ -1,39 +1,49 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import style from "./Workout.module.css";
 
-export const Workout: FC<Partial<IWorkout>> = ({
-  date,
-  comment,
-  push,
-  pull,
-  legs,
-}) => {
+export const Workout: FC<IWorkout> = ({ workout, children }) => {
   return (
     <article className={style.article}>
-      {date && (
+      {workout.date && (
         <div className={style.article__header}>
-          <h4>{new Date(date).toDateString()}</h4>
+          <h3>{new Date(workout.date).toDateString()}</h3>
         </div>
       )}
       <div className={style.article__body}>
-        <p>{comment}</p>
+        <p>{workout.comments}</p>
       </div>
       <div className={style.article__footer}>
-        <div>Pull: </div>
-        <div>{pull} </div>
-        <div>Push: </div>
-        <div>{push} </div>
-        <div>Legs: </div>
-        <div>{legs}</div>
+        <div>
+          <strong>Pull:</strong>
+        </div>
+        <div>{workout.pull_reps || 0} </div>
+        <div>
+          <strong>Push:</strong>
+        </div>
+        <div>{workout.push_reps || 0} </div>
+        <div>
+          <strong>Legs:</strong>
+        </div>
+        <div>{workout.leg_reps || 0}</div>
+        {children}
       </div>
     </article>
   );
 };
 
-interface IWorkout {
-  comment: string;
-  push: number;
-  pull: number;
-  legs: number;
+interface IWorkout extends PropsWithChildren {
+  workout: IWorkoutItem;
+}
+
+interface IWorkoutItem {
   date: string;
+  comments: string;
+  pull_reps: number | null;
+  push_reps: number | null;
+  leg_reps: number | null;
+  exercises: {
+    name: string;
+    type: string;
+  }[];
+  session: null;
 }

@@ -1,0 +1,25 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  place-items: center;
+}
+
+.wrapper > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  padding: 0.5rem;
+  border-radius: 100%;
+}
+
+.badge.badge--red {
+  background-color: red;
+}
+
+.badge.badge--green {
+  background-color: green;
+}

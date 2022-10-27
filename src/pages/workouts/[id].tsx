@@ -1,22 +1,15 @@
 import { useRouter } from "next/router";
+import qs from "qs";
 import Button from "src/components/Button";
-import Workout from "src/components/Workout";
+import { fetcher } from "src/lib/api";
 
-export default function FirstPost({ post }) {
+export default function Post({ workout }) {
+  return <pre>{JSON.stringify(workout, null, 4)}</pre>;
   const router = useRouter();
-  const {
-    attributes: { date, comments, pull_reps, push_reps, leg_reps },
-  } = post;
-
+  const { id } = router.query;
   return (
     <article>
-      <Workout
-        date={date}
-        comment={comments}
-        pull={pull_reps}
-        push={push_reps}
-        legs={leg_reps}
-      />
+      {/* <Workout workout={+id} /> */}
       <Button label="Go Back" primary onClick={() => router.back()} />
     </article>
   );
@@ -45,13 +38,35 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
-// This also gets called at build time
+// // This also gets called at build time
 export async function getStaticProps({ params }) {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-  const res = await fetch(`${process.env.apiBaseUrl}/workouts/${params.id}`);
-  const post = await res.json();
+  const query = qs.stringify(
+    {
+      populate: {
+        exercises: {
+          fields: ["name", "type"],
+        },
+        session: {
+          fields: ["name", "description"],
+        },
+      },
+      sort: ["date:desc"],
+      fields: ["date", "comments", "pull_reps", "push_reps", "leg_reps"],
+    },
+    {
+      encodeValuesOnly: true, // prettify URL
+    }
+  );
 
-  // Pass post data to the page via props
-  return { props: { post: post.data } };
+  const res = await fetcher(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/workouts/${params.id}?${query}`
+  );
+
+  if (res.error) {
+    return { props: { post: res.error } };
+  }
+
+  return { props: { workout: res } };
 }
