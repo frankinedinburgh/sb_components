@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { useState } from "react";
-import { fetcher, setToken, unsetToken, useUser } from "src/lib";
+import { fetcher, setToken, unsetToken, useUser } from "../../lib";
 import style from "./Navbar.module.css";
 
 export const Navbar = ({

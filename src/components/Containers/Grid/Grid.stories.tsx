@@ -1,4 +1,3 @@
-import { Workout } from "../../Workout/Workout";
 import Grid from "./";
 
 export default {
@@ -19,11 +18,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   children: (
     <>
-      <Workout />
-      <Workout />
-      <Workout />
-      <Workout />
-      <Workout />
+      <p>Soe test</p>
     </>
   ),
 };
