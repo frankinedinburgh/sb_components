@@ -33,16 +33,3 @@ export const InputField = ({
     </div>
   );
 };
-
-interface IInputField {
-  type: "text" | "number";
-  name: string;
-  value?: string;
-  min?: number;
-  max?: number;
-  className: string;
-  onChange: () => void;
-  placeholder: string;
-  label: string;
-  error?: string;
-}

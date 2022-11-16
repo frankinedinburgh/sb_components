@@ -46,15 +46,3 @@ export const Task: FC<ITaskProps> = ({
     </div>
   );
 };
-
-interface ITaskProps {
-  task: ITask;
-  onArchiveTask: (...args: any[]) => any;
-  onPinTask: (...args: any[]) => any;
-}
-
-interface ITask {
-  id: string;
-  title: string;
-  state: string;
-}

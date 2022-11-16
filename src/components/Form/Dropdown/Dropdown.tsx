@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import style from "./Dropdown.module.css";
 
@@ -160,11 +160,3 @@ export const Dropdown = ({
     </div>
   );
 };
-
-interface IDropdown {
-  placeHolder: string;
-  options: string[];
-  isMulti: boolean;
-  isSearchable: boolean;
-  onChange: (evt: React.ChangeEventHandler) => void;
-}

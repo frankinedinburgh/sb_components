@@ -1,11 +1,17 @@
 import Link from "next/link";
 import qs from "qs";
+import { useState } from "react";
 import Stack from "src/components/Containers/Stack";
 import Workout from "src/components/Workout";
 import { fetcher } from "src/lib/api";
 
 export default function Workouts({ post, pagination }) {
+  return <pre>{JSON.stringify(post, null, 4)}</pre>;
+  let [page, setPage] = useState(0);
   let data = post.reduce((acc, val) => {
+    if (!val.attributes) {
+      return acc;
+    }
     return [
       ...acc,
       {
@@ -15,11 +21,13 @@ export default function Workouts({ post, pagination }) {
         pull_reps: val.attributes.pull_reps,
         push_reps: val.attributes.push_reps,
         leg_reps: val.attributes.leg_reps,
-        exercises: val.attributes.exercises.data.map((e) => ({
-          name: e.attributes.name,
-          type: e.attributes.type,
-        })),
-        session: val.attributes.session.data,
+        exercises:
+          val.attributes.exercises &&
+          val.attributes.exercises.data.map((e) => ({
+            name: e.attributes.name,
+            type: e.attributes.type,
+          })),
+        session: val.attributes.session && val.attributes.session.data,
       },
     ];
   }, []);
@@ -27,14 +35,16 @@ export default function Workouts({ post, pagination }) {
   return (
     <Stack direction="column">
       <ul>
-        {data.map((p) => (
-          <li key={p.id}>
-            <Workout workout={p}>
-              <Link href={`/workouts/${p.id}`}>{p.date}</Link>
-            </Workout>
-          </li>
-        ))}
+        {data &&
+          data.map((p) => (
+            <li key={p.id}>
+              <Workout workout={p}>
+                <Link href={`/workouts/${p.id}`}>{p.date}</Link>
+              </Workout>
+            </li>
+          ))}
       </ul>
+      <pre>{JSON.stringify(pagination, null, 4)}</pre>
     </Stack>
   );
 }
@@ -70,4 +80,19 @@ export async function getStaticProps() {
   }
 
   return { props: { post: res.data, pagination: res.meta } };
+}
+
+interface IPost {
+  date: string;
+  comments: string;
+  pull_reps: number;
+  push_reps: number;
+  leg_reps: number;
+  [key: string]: any;
+}
+interface IPagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
 }

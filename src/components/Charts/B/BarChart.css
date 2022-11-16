@@ -1,0 +1,40 @@
+.chart {
+  width: 100%;
+  max-width: 30rem;
+  padding: 1.5rem 1.5rem 2rem;
+  border: 2px solid #a7a8aa;
+  border-radius: 0.5rem;
+  margin: auto;
+}
+
+h2 {
+  margin: 0 0 2.5rem;
+}
+
+.chart_list {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 0.5em 0;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  grid-auto-columns: 1fr;
+}
+
+li {
+  background: #ffd100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  opacity: 0.8;
+}
+
+li:hover {
+  opacity: 1;
+}
+
+li span {
+  font-weight: bold;
+}

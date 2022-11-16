@@ -5,6 +5,4 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => (
   <div className={style["flex-container"]}>{children}</div>
 );
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+interface LayoutProps extends React.PropsWithChildren {}

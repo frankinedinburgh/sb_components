@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC, PropsWithChildren, ReactElement } from "react";
+import { FC, PropsWithChildren, ReactElement } from "react";
 import style from "./RadioButton.module.css";
 
 export const RadioButton: FC<IProps> = ({
@@ -20,9 +20,4 @@ export const RadioButton: FC<IProps> = ({
   </label>
 );
 
-interface IProps extends PropsWithChildren {
-  value: string | number;
-  name: string;
-  onChangeHandler?: ChangeEventHandler<HTMLInputElement>;
-  checked?: boolean;
-}
+interface IProps extends IRadioButton, PropsWithChildren {}

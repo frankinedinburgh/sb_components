@@ -28,10 +28,3 @@ export const TaskList: FC = ({
     </div>
   );
 };
-
-interface ITaskList {
-  loading: true;
-  tasks: any[];
-  onPinTask: () => void;
-  onArchiveTask: () => void;
-}

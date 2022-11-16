@@ -48,7 +48,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8" />
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
