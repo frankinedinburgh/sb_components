@@ -76,27 +76,3 @@ svg {
 ul li {
   list-style-type: none;
 }
-
-/* grid.css */
-.grid {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  /* grid-template-rows: 50px 200px 100px; */
-  grid-gap: 1em;
-}
-
-nav,
-header,
-footer {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  min-height: 100px;
-}
-
-.grid > * {
-  outline: 1px solid red;
-  background: lightgray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

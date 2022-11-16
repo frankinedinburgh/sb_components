@@ -4,16 +4,18 @@
   padding: 1.5rem 1.5rem 2rem;
   border: 2px solid #a7a8aa;
   border-radius: 0.5rem;
-  margin: auto;
+  margin: 10px auto;
 }
 
-h2 {
-  margin: 0 0 2.5rem;
+.chart h2,
+.chart p {
+  margin: 0 0 0.5rem;
+  color: #1f2021;
 }
 
 .chart_list {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 1;
   gap: 0.5em 0;
   align-items: center;
   margin: 0;
@@ -22,7 +24,7 @@ h2 {
   grid-auto-columns: 1fr;
 }
 
-li {
+.chart_list li {
   background: #ffd100;
   display: flex;
   align-items: center;
@@ -31,10 +33,10 @@ li {
   opacity: 0.8;
 }
 
-li:hover {
+.chart_list li:hover {
   opacity: 1;
 }
 
-li span {
+.chart_list li span {
   font-weight: bold;
 }

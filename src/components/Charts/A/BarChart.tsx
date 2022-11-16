@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "./BarChart.css";
+import styles from "./BarChart.module.css";
 
 const BarGroup: FC<IBarGroup> = ({
   barHeight,
@@ -13,7 +13,7 @@ const BarGroup: FC<IBarGroup> = ({
   let yMid = barHeight * 0.5;
 
   return (
-    <g className="bar-group">
+    <g className={styles["bar-group"]}>
       <text className="name-label" x="-6" y={yMid} alignmentBaseline="middle">
         {item.name}
       </text>
@@ -46,11 +46,11 @@ export const BarChart: FC<IChart> = ({ stats = [], title }) => {
 
   return (
     <svg width="800" height="300">
-      <g className="container">
+      <g className={styles.container}>
         <text className="title" x="10" y="30">
           {title}
         </text>
-        <g className="chart" transform="translate(100,60)">
+        <g className={styles.chart} transform="translate(100,60)">
           {barGroups}
         </g>
       </g>

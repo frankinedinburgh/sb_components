@@ -1,14 +1,21 @@
+import { PropsWithChildren, ReactNode } from "react";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
+import styles from "./Layout.module.css";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ header, aside, children }) => {
   return (
-    <div className="grid">
+    <div className={styles.grid}>
       <Navbar title={"Strength & Fitness"} hasSubMenu={false} />
-      <header>Header</header>
+      {!!header && header}
       <main>{children}</main>
-      <aside>Right Sidebar</aside>
+      {!!aside && aside}
       <Footer />
     </div>
   );
 };
+
+interface ILayout extends PropsWithChildren {
+  header?: ReactNode;
+  aside?: ReactNode;
+}

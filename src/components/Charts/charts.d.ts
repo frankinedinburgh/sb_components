@@ -1,5 +1,6 @@
 interface IChart {
   title?: string;
+  subHeader?: string;
   stats: IStat[];
 }
 

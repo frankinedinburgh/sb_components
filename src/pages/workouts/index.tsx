@@ -1,12 +1,11 @@
-import Link from "next/link";
 import qs from "qs";
 import { useState } from "react";
+import { BarChartB } from "src/components/Charts";
 import Stack from "src/components/Containers/Stack";
-import Workout from "src/components/Workout";
 import { fetcher } from "src/lib/api";
 
 export default function Workouts({ post, pagination }) {
-  return <pre>{JSON.stringify(post, null, 4)}</pre>;
+  // return <pre>{JSON.stringify(post, null, 4)}</pre>;
   let [page, setPage] = useState(0);
   let data = post.reduce((acc, val) => {
     if (!val.attributes) {
@@ -38,9 +37,27 @@ export default function Workouts({ post, pagination }) {
         {data &&
           data.map((p) => (
             <li key={p.id}>
-              <Workout workout={p}>
+              {/* <Workout workout={p}>
                 <Link href={`/workouts/${p.id}`}>{p.date}</Link>
-              </Workout>
+              </Workout> */}
+              <BarChartB
+                title={p.date}
+                subHeader={p.comments}
+                stats={[
+                  {
+                    name: "Pull",
+                    value: p.pull_reps,
+                  },
+                  {
+                    name: "Push",
+                    value: p.push_reps,
+                  },
+                  {
+                    name: "Legs",
+                    value: p.leg_reps,
+                  },
+                ]}
+              />
             </li>
           ))}
       </ul>

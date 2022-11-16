@@ -7,7 +7,7 @@ export default {
 
 const Template = (args) => <BarChart {...args} />;
 
-const data = [
+const stats = [
   { name: "Mon", value: 20 },
   { name: "Tue", value: 40 },
   { name: "Wed", value: 35 },
@@ -19,7 +19,7 @@ const data = [
 
 export const Default = Template.bind({});
 Default.args = {
-  data,
+  stats,
   title: "Pull ups beginning 7th November",
   barColour: "#348AA7",
   barPadding: 20,
