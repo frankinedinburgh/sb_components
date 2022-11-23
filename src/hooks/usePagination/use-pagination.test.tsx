@@ -6,9 +6,9 @@ const options = [
     title: "Should set the pagination results",
     inputs: {
       currentPage: 1,
-      pageSize: 25,
-      siblingCount: 4,
       totalCount: 84,
+      siblingCount: 4,
+      pageSize: 25,
     },
   },
 ];
@@ -16,7 +16,7 @@ const options = [
 options.forEach((option, index) => {
   describe("usePagination tests", () => {
     it(`${index} - ${option.title}`, () => {
-      renderHook(() => {
+      const { result } = renderHook(() => {
         usePagination(option.inputs);
       });
 

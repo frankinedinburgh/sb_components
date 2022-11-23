@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./BarChart.module.css";
 
-export const BarChart: FC<IChart> = ({ stats, title, subHeader }) => {
+export const BarChart: FC<IProps> = ({ stats, title, subHeader }) => {
   return (
     <section className={styles.chart}>
-      <h2>{title}</h2>
+      {title}
       {subHeader && <p>{subHeader}</p>}
       <ul className={styles.chart_list}>
         {stats &&
@@ -12,10 +12,12 @@ export const BarChart: FC<IChart> = ({ stats, title, subHeader }) => {
             if (d.value) {
               return (
                 <li
-                  style={{
-                    gridColumn: `span ${d.value}`,
-                    gridRowStart: idx + 1,
-                  }}
+                  style={
+                    {
+                      gridColumn: `span ${d.value}`,
+                      gridRowStart: idx + 1,
+                    } as React.CSSProperties
+                  }
                 >
                   {d.name}:<span>{d.value}</span>
                 </li>
@@ -26,3 +28,7 @@ export const BarChart: FC<IChart> = ({ stats, title, subHeader }) => {
     </section>
   );
 };
+
+interface IProps extends IChart {
+  title?: ReactNode | string;
+}

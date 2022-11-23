@@ -16,7 +16,7 @@ const stats = [
 export const Default = Template.bind({});
 Default.args = {
   stats,
-  title: "Today's reps",
+  title: <h4>Today's reps</h4>,
   subHeader: "50min slow easy run",
 };
 
@@ -27,7 +27,7 @@ Second.args = {
     { name: "Push", value: 50 },
     { name: "Legs", value: 125 },
   ],
-  title: "Today's reps",
+  title: <h3>Today's reps</h3>,
   subHeader: "50min slow easy run",
 };
 
@@ -38,6 +38,6 @@ SameSpan.args = {
     { name: "Push", value: 30 },
     { name: "Legs", value: 30 },
   ],
-  title: "Today's reps",
+  title: <h2>Today's reps</h2>,
   subHeader: "50min slow easy run",
 };

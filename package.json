@@ -5,11 +5,12 @@
     "build": "next build",
     "start": "next start",
     "old:storybook": "start-storybook -p 6006",
-    "storybook": "node --max_old_space_size=4096 ./node_modules/@storybook/react/bin/index.js -p 6006 -c .storybook",
+    "storybook": "node --max_old_space_size=4096 ./node_modules/@storybook/react/bin/index.js -p 6005 -c .storybook",
     "build-storybook": "build-storybook -s ./public"
   },
   "dependencies": {
     "js-cookie": "^3.0.1",
+    "moment": "^2.29.4",
     "next": "12.3.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -18,6 +19,7 @@
     "@babel/core": "^7.19.3",
     "@storybook/addon-a11y": "^6.5.12",
     "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-docs": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.5.12",
     "@storybook/addon-links": "^6.5.12",

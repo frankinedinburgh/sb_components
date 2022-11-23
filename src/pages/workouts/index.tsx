@@ -1,10 +1,12 @@
+import moment from "moment";
+import Link from "next/link";
 import qs from "qs";
 import { useState } from "react";
-import { BarChartB } from "src/components/Charts";
+import { BarChartB, BarChartC } from "src/components";
 import Stack from "src/components/Containers/Stack";
 import { fetcher } from "src/lib/api";
 
-export default function Workouts({ post, pagination }) {
+export default function Workouts<IWorkouts>({ post, pagination }) {
   // return <pre>{JSON.stringify(post, null, 4)}</pre>;
   let [page, setPage] = useState(0);
   let data = post.reduce((acc, val) => {
@@ -33,16 +35,17 @@ export default function Workouts({ post, pagination }) {
 
   return (
     <Stack direction="column">
+      <BarChartC
+        stats={data.map((p) => ({
+          name: moment(p.date).calendar(),
+          value: p.pull_reps || 1,
+        }))}
+      />
       <ul>
         {data &&
           data.map((p) => (
             <li key={p.id}>
-              {/* <Workout workout={p}>
-                <Link href={`/workouts/${p.id}`}>{p.date}</Link>
-              </Workout> */}
               <BarChartB
-                title={p.date}
-                subHeader={p.comments}
                 stats={[
                   {
                     name: "Pull",
@@ -57,6 +60,12 @@ export default function Workouts({ post, pagination }) {
                     value: p.leg_reps,
                   },
                 ]}
+                subHeader={p.comments}
+                title={
+                  <Link href={`/workouts/${p.id}`}>
+                    {moment(p.date).calendar()}
+                  </Link>
+                }
               />
             </li>
           ))}
