@@ -4,7 +4,7 @@ import styles from "./BarChart.module.css";
 const BarGroup: FC<IBarGroup> = ({
   barHeight,
   item,
-  barColour = "#348AA7",
+  barColour,
   barPadding = 2,
 }) => {
   let widthScale = (d) => d * 10;
@@ -35,12 +35,15 @@ const BarGroup: FC<IBarGroup> = ({
   );
 };
 
-export const BarChart: FC<IChart> = ({ stats = [], title }) => {
-  let barHeight = 30;
-
+export const BarChart: FC<IBarChart> = ({
+  stats = [],
+  barColour = "#c3c3c3",
+  title,
+  barHeight = 30,
+}) => {
   let barGroups = stats.map((d, i) => (
     <g transform={`translate(0, ${i * barHeight})`}>
-      <BarGroup item={d} barHeight={barHeight} />
+      <BarGroup item={d} barHeight={barHeight} barColour={barColour} />
     </g>
   ));
 
@@ -57,3 +60,9 @@ export const BarChart: FC<IChart> = ({ stats = [], title }) => {
     </svg>
   );
 };
+
+interface IBarChart extends IChart {
+  title?: string;
+  barColour?: string;
+  barHeight?: number;
+}

@@ -20,7 +20,8 @@ const stats = [
 export const Default = Template.bind({});
 Default.args = {
   stats,
-  title: "Pull ups beginning 7th November",
-  barColour: "#348AA7",
+  title: "Pull ups beginning 8th November",
+  barColour: "#c3c3c3",
   barPadding: 20,
+  barHeight: 40,
 };
