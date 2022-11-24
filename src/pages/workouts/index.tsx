@@ -2,7 +2,7 @@ import moment from "moment";
 import Link from "next/link";
 import qs from "qs";
 import { useState } from "react";
-import { BarChartB, BarChartC } from "src/components";
+import { BarChartB } from "src/components";
 import Stack from "src/components/Containers/Stack";
 import { fetcher } from "src/lib/api";
 
@@ -35,12 +35,6 @@ export default function Workouts<IWorkouts>({ post, pagination }) {
 
   return (
     <Stack direction="column">
-      <BarChartC
-        stats={data.map((p) => ({
-          name: moment(p.date).calendar(),
-          value: p.pull_reps || 1,
-        }))}
-      />
       <ul>
         {data &&
           data.map((p) => (

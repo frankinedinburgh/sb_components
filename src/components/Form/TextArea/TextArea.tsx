@@ -5,6 +5,7 @@ export const TextAreaField: FC<TextareaHTMLAttributes<T>> = ({
   name,
   rows = 4,
   cols = 50,
+  value,
 }) => {
   return (
     <div className={style.textarea}>
@@ -18,6 +19,7 @@ export const TextAreaField: FC<TextareaHTMLAttributes<T>> = ({
         id={name}
         name={name}
         onChange={() => null}
+        value={value}
       />
     </div>
   );
