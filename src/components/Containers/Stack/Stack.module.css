@@ -11,6 +11,5 @@
 }
 
 .container > div {
-  background: var(--color-gray);
   padding: min(15px, 8%);
 }

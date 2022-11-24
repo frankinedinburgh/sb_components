@@ -12,8 +12,8 @@ interface IInputField {
   value?: string;
   min?: number;
   max?: number;
-  className: string;
-  onChange: () => void;
+  className?: string;
+  onChange?: () => void;
   placeholder: string;
   label: string;
   error?: string;

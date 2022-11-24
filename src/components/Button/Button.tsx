@@ -3,35 +3,38 @@ import { FC, PropsWithChildren } from "react";
 import style from "./Button.module.css";
 
 export const Button: FC<Partial<IButton>> = ({
+  type = "button",
   primary = false,
   backgroundColor = null,
   size = "medium",
-  label = null,
+  rounded = false,
   children,
   ...props
 }) => {
   return (
     <button
-      type="button"
+      type={type}
       className={classNames(style.button, {
         [style["button--small"]]: size === "small",
         [style["button--medium"]]: size === "medium",
         [style["button--large"]]: size === "large",
         [style["button--primary"]]: primary,
         [style["button--secondary"]]: !primary,
+        [style["button--rounded"]]: rounded,
       })}
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
-      {children ? children : label}
+      {children}
     </button>
   );
 };
 
 interface IButton extends PropsWithChildren {
+  type: "button" | "submit" | "reset";
   primary: boolean;
   backgroundColor: string;
   size: "small" | "medium" | "large";
-  label: string;
   onClick: () => void;
+  rounded: boolean;
 }

@@ -12,18 +12,13 @@ Column.args = {
   spacing: 3,
   direction: "column",
   wrap: true,
-  children: (
-    <>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>7</div>
-      <div>8</div>
-    </>
-  ),
+  children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((row) => (
+    <div
+      style={{ backgroundColor: "var(--color-gray)", height: "max-content" }}
+    >
+      {row}
+    </div>
+  )),
 };
 
 export const Row = Template.bind({});
@@ -31,12 +26,11 @@ Row.args = {
   spacing: 3,
   direction: "row",
   wrap: false,
-  children: (
-    <>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-    </>
-  ),
+  children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((row) => (
+    <div
+      style={{ backgroundColor: "var(--color-gray)", height: "max-content" }}
+    >
+      {row}
+    </div>
+  )),
 };

@@ -1,35 +1,39 @@
 import Head from "next/head";
-import Grid from "../components/Grid/Grid";
+import Button from "src/components/Button";
+import Stack from "src/components/Containers/Stack";
+import Form from "src/components/Form/Form";
+import InputField from "src/components/Form/InputField";
+import TextAreaField from "src/components/Form/TextArea";
 
 export default function Home() {
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
 
-    // Get data from the form.
-    const data = {
-      date: event.target.date.value,
-      comments: event.target.comments.value,
-      push: event.target.push.value,
-      pull: event.target.pull.value,
-      legs: event.target.legs.value,
+    const target = event.target as typeof event.target & {
+      date: { value: string };
+      comments: { value: string };
+      push: { value: string };
+      pull: { value: string };
+      legs: { value: string };
     };
 
-    // Send the data to the server in JSON format.
-    const JSONdata = JSON.stringify(data);
+    const data = {
+      date: target.date.value,
+      comments: target.comments.value,
+      push: target.push.value,
+      pull: target.pull.value,
+      legs: target.legs.value,
+    };
 
-    // API endpoint where we send form data.
+    const JSONdata = JSON.stringify(data);
     const endpoint = "/api/form";
 
-    // Form the request for sending data to the server.
     const options = {
-      // The method is POST because we are sending data.
       method: "POST",
-      // Tell the server we're sending JSON.
       headers: {
         "Content-Type": "application/json",
       },
-      // Body of the request is the JSON data we created above.
       body: JSONdata,
     };
 
@@ -53,57 +57,56 @@ export default function Home() {
       </Head>
 
       <main>
-        <Grid column={true}>
-          <Grid column={true} sm={12} md={4}>
-            {/* <form action="/api/form" method="post"> */}
+        <Form onSubmit={handleSubmit}>
+          <Stack direction="column" spacing={3}>
             <form onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="date">Select Date:</label>
-                <input type="date" id="date" name="date" />
-              </div>
+              <Stack direction="column" spacing={3}>
+                <div>
+                  <label htmlFor="date">Select Date:</label>
+                  <input type="date" id="date" name="date" />
+                </div>
+
+                <TextAreaField rows={4} cols={50} name={"comments"} />
+              </Stack>
+              <Stack direction="row" spacing={3}>
+                <InputField
+                  label="Push Reps: "
+                  max={400}
+                  min={0}
+                  name="push"
+                  type="number"
+                />
+                <InputField
+                  label="Pull Reps: "
+                  max={400}
+                  min={0}
+                  name="pull"
+                  type="number"
+                />
+                <InputField
+                  label="Leg Reps: "
+                  min={0}
+                  name="legs"
+                  type="number"
+                />
+              </Stack>
 
               <div>
-                <label htmlFor="comments">Comment:</label>
-                <textarea rows={4} cols={50} id="comments" name="comments" />
-              </div>
-
-              <div>
-                <label htmlFor="push">Push:</label>
-                <input type="number" min={0} id="push" name="push" />
-              </div>
-
-              <div>
-                <label htmlFor="pull">Pull:</label>
-                <input type="number" min={0} id="pull" name="pull" />
-              </div>
-
-              <div>
-                <label htmlFor="legs">Legs:</label>
-                <input type="number" min={0} id="legs" name="legs" />
-              </div>
-
-              <div>
-                <button type="submit">Submit</button>
+                <Button type="submit">Submit</Button>
               </div>
             </form>
-          </Grid>
-          <Grid column={true} sm={12} md={4}>
-            <h1>Column 2</h1>
-          </Grid>
-          <Grid column={true} sm={12} md={4}>
-            <h1>Column 3</h1>
-          </Grid>
-        </Grid>
+          </Stack>
+        </Form>
       </main>
 
       <footer>
-        <a
+        {/* <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
           Powered by <img src="/vercel.svg" alt="Vercel" className="logo" />
-        </a>
+        </a> */}
       </footer>
     </div>
   );
