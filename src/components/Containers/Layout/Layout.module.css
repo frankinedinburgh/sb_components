@@ -2,12 +2,3 @@
   display: flex;
   flex-wrap: nowrap;
 }
-
-.flex-container > div {
-  background-color: var(--color-gray);
-  width: max(100px, 30%);
-  margin: min(10px, 1%);
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-}

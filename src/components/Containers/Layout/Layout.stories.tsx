@@ -12,29 +12,37 @@ const Template = (args) => <Layout {...args} />;
 export const Eight = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Eight.args = {
-  children: (
-    <>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>7</div>
-      <div>8</div>
-    </>
-  ),
+  children: [1, 2, 3, 4, 5, 6, 7, 8].map((child) => (
+    <div
+      style={{
+        backgroundColor: "var(--color-gray)",
+        width: "max(100px, 30%)",
+        margin: "min(10px, 1%)",
+        textAlign: "center",
+        lineHeight: "75px",
+        fontSize: "30px",
+      }}
+    >
+      {child}
+    </div>
+  )),
 };
 
 export const Four = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Four.args = {
-  children: (
-    <>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-    </>
-  ),
+  children: [1, 2, 3, 4].map((child) => (
+    <div
+      style={{
+        backgroundColor: "var(--color-gray)",
+        width: "max(100px, 30%)",
+        margin: "min(10px, 1%)",
+        textAlign: "center",
+        lineHeight: "75px",
+        fontSize: "30px",
+      }}
+    >
+      {child}
+    </div>
+  )),
 };

@@ -1,9 +1,9 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
 import styles from "./Layout.module.css";
 
-export const Layout = ({ header, aside, children }) => {
+export const Layout: FC<ILayout> = ({ header, aside, children }) => {
   return (
     <div className={styles.grid}>
       <Navbar title={"Strength & Fitness"} hasSubMenu={false} />

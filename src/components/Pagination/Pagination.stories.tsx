@@ -10,7 +10,7 @@ export default {
 
 const Template = (args) => <Pagination {...args} />;
 
-// export const Default = Template.bind({});
+export const Default = Template.bind({});
 // Default.args = {
 //   className: "pagination-bar",
 //   currentPage: 2,

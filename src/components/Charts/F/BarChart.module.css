@@ -1,0 +1,77 @@
+.graph {
+  height: 130px;
+  position: relative;
+}
+
+.y-axis {
+  display: block;
+  float: left;
+}
+
+.x-axis {
+  margin-left: 30px;
+  position: relative;
+  bottom: -16px;
+}
+
+.intervals {
+  margin-left: 30px;
+  position: relative;
+}
+
+.interval {
+  bottom: 0;
+  border-bottom: 1px solid #007fb6;
+  border-left: 1px solid #fff;
+  display: block;
+  float: left;
+  height: 100%;
+}
+
+.label,
+.interval,
+.fill,
+.tick {
+  position: absolute;
+}
+
+.bar {
+  bottom: 0;
+  display: block;
+  left: 0;
+  height: 100%;
+}
+
+.clickable,
+.btn-link {
+  color: #007fb6;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-transition: color 0.1s ease, border 0.1s ease,
+    background-color 0.1s ease, opacity 0.1s ease, -webkit-box-shadow 0.1s ease;
+  transition: color 0.1s ease, border 0.1s ease, background-color 0.1s ease,
+    opacity 0.1s ease, -webkit-box-shadow 0.1s ease;
+  transition: color 0.1s ease, border 0.1s ease, box-shadow 0.1s ease,
+    background-color 0.1s ease, opacity 0.1s ease;
+  transition: color 0.1s ease, border 0.1s ease, box-shadow 0.1s ease,
+    background-color 0.1s ease, opacity 0.1s ease, -webkit-box-shadow 0.1s ease;
+}
+
+.fill {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#009ce0),
+    to(#0070a0)
+  );
+  background: linear-gradient(#009ce0, #0070a0);
+  bottom: 1px;
+  display: block;
+  left: 0;
+  width: 100%;
+}
+
+.bar:hover .fill {
+  background: #009ce0;
+}

@@ -41,14 +41,14 @@ export const Column = Template.bind({});
 // // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Column.args = {
   children: (
-    <Grid row={false}>
-      <Grid column={false} sm={12} md={4}>
+    <Grid column={true}>
+      <Grid column={true} sm={12} md={4}>
         <h1>Column 1</h1>
       </Grid>
-      <Grid column={false} sm={12} md={4}>
+      <Grid column={true} sm={12} md={4}>
         <h1>Column 2</h1>
       </Grid>
-      <Grid column={false} sm={12} md={4}>
+      <Grid column={true} sm={12} md={4}>
         <h1>Column 3</h1>
       </Grid>
     </Grid>
