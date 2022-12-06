@@ -1,7 +1,7 @@
 import { PieChart } from "./PieChart";
 
 export default {
-  title: "Charts/D/PieChart",
+  title: "Charts/PieChart",
   component: PieChart,
   parameters: {
     docs: {

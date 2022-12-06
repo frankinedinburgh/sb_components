@@ -1,7 +1,7 @@
 import { BarChart } from "./BarChart";
 
 export default {
-  title: "Charts/E/BarChart",
+  title: "Charts/BarChart",
   component: BarChart,
   parameters: {
     docs: {
@@ -17,7 +17,7 @@ const Template = (args) => <BarChart {...args} />;
 
 const stats = [
   { name: "2000", value: 45 },
-  { name: "2001", value: 100 },
+  { name: "2001", value: 110 },
   { name: "2002", value: 63 },
   { name: "2003", value: 11 },
   { name: "2004", value: 46 },

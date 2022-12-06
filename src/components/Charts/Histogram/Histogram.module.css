@@ -1,0 +1,27 @@
+.columns {
+  display: flex;
+  height: 50vh;
+  max-height: 400px;
+  align-items: stretch;
+  max-width: 300px;
+  border: 1px solid #ccc;
+}
+
+.column-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+.column-bar {
+  border-right: 1px solid white;
+}
+
+.series-a {
+  background: salmon;
+}
+.series-b {
+  background: wheat;
+}

@@ -41,12 +41,6 @@ export const BarChart: FC<IBarChart> = ({
   title,
   barHeight = 30,
 }) => {
-  let barGroups = stats.map((d, i) => (
-    <g transform={`translate(0, ${i * barHeight})`}>
-      <BarGroup item={d} barHeight={barHeight} barColour={barColour} />
-    </g>
-  ));
-
   return (
     <svg width="800" height="300">
       <g className={styles.container}>
@@ -54,7 +48,14 @@ export const BarChart: FC<IBarChart> = ({
           {title}
         </text>
         <g className={styles.chart} transform="translate(100,60)">
-          {barGroups}
+          {stats.map((d, i) => (
+            <g
+              key={`${d.name}-${i}`}
+              transform={`translate(0, ${i * barHeight})`}
+            >
+              <BarGroup item={d} barHeight={barHeight} barColour={barColour} />
+            </g>
+          ))}
         </g>
       </g>
     </svg>
