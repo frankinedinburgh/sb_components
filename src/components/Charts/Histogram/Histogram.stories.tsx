@@ -1,3 +1,4 @@
+import { Meta } from "@storybook/react";
 import { Histogram } from "./Histogram";
 
 export default {
@@ -11,7 +12,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 const Template = (args) => <Histogram {...args} />;
 

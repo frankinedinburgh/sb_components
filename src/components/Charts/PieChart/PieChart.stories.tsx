@@ -22,3 +22,11 @@ Default.args = {
   padding: 10,
   rounded: true,
 };
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  percentage: 80,
+  colour: "red",
+  padding: 5,
+  rounded: false,
+};

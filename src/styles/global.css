@@ -75,4 +75,9 @@ svg {
 
 ul li {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: 0.2s;
+  user-select: none;
 }
