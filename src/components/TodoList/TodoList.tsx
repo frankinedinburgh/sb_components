@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 import style from "./TodoList.module.css";
 
-export const TodoList: React.FC = ({ title }: ITodoList) => {
-  const [list, setList] = useState([]);
-  const inputRef = useRef();
+export const TodoList: React.FC = ({ title, todos }: ITodoList) => {
+  const [list, setList] = useState(todos);
+  const inputRef = useRef<HTMLInputElement>();
 
   const addTasK = (item) => {
     inputRef.current.value = null;
@@ -16,7 +16,7 @@ export const TodoList: React.FC = ({ title }: ITodoList) => {
 
   return (
     <>
-      <div id="myDIV" className={style.header}>
+      <div className={style.header}>
         <h2
           style={{
             margin: "5px",
@@ -35,7 +35,7 @@ export const TodoList: React.FC = ({ title }: ITodoList) => {
         </span>
       </div>
 
-      <ul id="myUL" className={style.list}>
+      <ul className={style.list}>
         {list &&
           list.map((item) => (
             <li>
@@ -50,8 +50,9 @@ export const TodoList: React.FC = ({ title }: ITodoList) => {
   );
 };
 
-export default TodoList;
+export default memo(TodoList);
 
 interface ITodoList {
   title: string;
+  todos: string[];
 }

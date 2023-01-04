@@ -12,5 +12,11 @@ const Template = (args) => <TodoList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: "My To Do List",
+  title: "Things to do:",
+  todos: [
+    "Create a component for an accordion",
+    "Fix strapi CMS on Heroku",
+    "Do the tech test for Knead",
+    "How to get strapi to work with Docker",
+  ],
 };
