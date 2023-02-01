@@ -1,1 +1,1 @@
-export { getWorkoutById, getWorkouts } from "./workouts.api";
+export { getExercises, getWorkoutById, getWorkouts } from "./workouts.api";

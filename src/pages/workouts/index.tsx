@@ -1,10 +1,12 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import moment from "moment";
 import Link from "next/link";
-import React from "react";
-import { BarChartB } from "src/components";
+import { useEffect, useState } from "react";
+import { BarChart } from "src/components";
 import Stack from "src/components/Containers/Stack";
-import { getWorkouts } from "../api";
+import Layout from "src/components/Layout";
+import { getExercises, getWorkouts } from "../api";
+import { getSessions } from "../api/workouts.api";
 
 function useWorkouts(page) {
   return useQuery({
@@ -15,208 +17,141 @@ function useWorkouts(page) {
   });
 }
 
-export default function Workouts() {
-  const queryClient = useQueryClient();
-  const [page, setPage] = React.useState(0);
-  const { status, data, error, isFetching, isPreviousData } = useWorkouts(page);
-  // const { data: workouts, pagination } = data;
-  // queryClient.getQueryData(["post", post.id])
+const Workouts = ({ exercises, sessions, error }) => {
+  if (error) {
+    return <pre>{JSON.stringify(error, null, 4)}</pre>;
+  }
 
-  // Prefetch the next page!
-  React.useEffect(() => {
-    if (data?.meta.pagination.pageCount - 1 !== page) {
-      queryClient.prefetchQuery(["workouts", page + 1], () =>
-        getWorkouts(page + 1)
-      );
+  const queryClient = useQueryClient();
+  const [page, setPage] = useState(0);
+  const {
+    status,
+    data,
+    isError,
+    error: err,
+    isSuccess,
+    isFetching,
+    isPreviousData,
+  } = useWorkouts(page);
+
+  // console.log({ data });
+
+  // const handlePreviousClick = useCallback(
+  //   () => setPage((old) => Math.max(old - 1, 0)),
+  //   []
+  // );
+
+  // const handleNextClick = useCallback(() => {
+  //   console.log("clicked");
+  //   if (!isPreviousData && page < data?.meta.pagination.pageCount) {
+  //     setPage((old) => old + 1);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    if (!isPreviousData && page < data?.meta.pagination.page) {
+      queryClient.prefetchQuery({
+        queryKey: ["projects", page + 1],
+        queryFn: () => getWorkouts(page + 1),
+      });
     }
-  }, [data, page, queryClient]);
+  }, [data, isPreviousData, page, queryClient]);
+
+  if (status === "loading") return "Loading...";
+  if (isFetching) return <div>Refreshing...</div>;
+  if (isError) {
+    if (err instanceof Error) {
+      return <div>Error: {err.message}</div>;
+    }
+    return <div>Error</div>;
+  }
 
   return (
-    <div>
-      {status === "loading" ? (
-        "Loading..."
-      ) : status === "error" ? (
+    <Layout
+      aside={
         <>
-          <span>Error: {error}</span>
-        </>
-      ) : data ? (
-        <>
-          <Stack direction="column">
+          <div>
+            <h3>Exercises: </h3>
             <ul>
-              {data.data &&
-                data.data.map((p) => (
-                  <li key={p.id}>
-                    {/* <pre>{JSON.stringify(p, null, 4)}</pre> */}
-                    <BarChartB
-                      stats={[
-                        {
-                          name: "Pull",
-                          value: p.attributes.pull_reps,
-                        },
-                        {
-                          name: "Push",
-                          value: p.attributes.push_reps,
-                        },
-                        {
-                          name: "Legs",
-                          value: p.attributes.leg_reps,
-                        },
-                      ]}
-                      subHeader={p.attributes.comments}
-                      title={
-                        <Link href={`/workouts/${p.id}`}>
-                          {moment(p.attributes.date).calendar()}
-                        </Link>
-                      }
-                    />
+              {exercises &&
+                exercises.map(({ id, attributes: { name, type } }) => (
+                  <li key={id}>
+                    {id} - {name}
                   </li>
                 ))}
             </ul>
-            {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
-            <div>Current Page: {page + 1}</div>
-          </Stack>
-          <Stack>
-            <button
-              onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
-              disabled={page === 0}
-            >
-              Previous Page
-            </button>
+          </div>
 
-            {Array.from(Array(data?.meta.pagination.pageCount).keys()).map(
-              (p) => (
-                <button
-                  onClick={() => setPage(p)}
-                  style={{
-                    borderRadius: 0,
-                    outline: "none",
-                  }}
-                >
-                  {p + 1}
-                </button>
-              )
-            )}
-            <button
-              onClick={() => {
-                setPage((prev) => (data?.data ? prev + 1 : prev));
-              }}
-              disabled={
-                isPreviousData || page === data?.meta.pagination.pageCount - 1
-              }
-            >
-              Next Page
-            </button>
-          </Stack>
+          <div>
+            <h3>Sessions: </h3>
+            <ul>
+              {sessions &&
+                sessions.map(({ id, attributes: { name, description } }) => (
+                  <li key={id}>
+                    {id} - {description}
+                  </li>
+                ))}
+            </ul>
+          </div>
         </>
-      ) : null}
-    </div>
+      }
+    >
+      <Stack direction="column">
+        <ul>
+          {isSuccess &&
+            data.data.map((p) => (
+              <li key={p.id}>
+                <BarChart
+                  stats={[
+                    {
+                      name: "Pull",
+                      value: p.attributes.pull_reps,
+                    },
+                    {
+                      name: "Push",
+                      value: p.attributes.push_reps,
+                    },
+                    {
+                      name: "Legs",
+                      value: p.attributes.leg_reps,
+                    },
+                  ]}
+                  subHeader={p.attributes.comments}
+                  title={
+                    <Link href={`/workouts/${p.id}`}>
+                      {moment(p.attributes.date).calendar()}
+                    </Link>
+                  }
+                />
+              </li>
+            ))}
+        </ul>
+      </Stack>
+      <Stack>
+        <span>Current Page: {page + 1}</span>
+        {/* <Button onClick={handlePreviousClick} disabled={page === 0}>
+          Previous Page
+        </Button>
+        <Button
+          onClick={handleNextClick}
+          disabled={isPreviousData || page >= data?.meta.pagination.pageCount}
+        >
+          Next Page
+        </Button> */}
+      </Stack>
+    </Layout>
   );
+};
 
-  // let [page, setPage] = useState(0);
-  // let data = post.reduce((acc, val) => {
-  //   if (!val.attributes) {
-  //     return acc;
-  //   }
-  //   return [
-  //     ...acc,
-  //     {
-  //       id: val.id,
-  //       date: val.attributes.date,
-  //       comments: val.attributes.comments,
-  //       pull_reps: val.attributes.pull_reps,
-  //       push_reps: val.attributes.push_reps,
-  //       leg_reps: val.attributes.leg_reps,
-  //       exercises:
-  //         val.attributes.exercises &&
-  //         val.attributes.exercises.data.map((e) => ({
-  //           name: e.attributes.name,
-  //           type: e.attributes.type,
-  //         })),
-  //       session: val.attributes.session && val.attributes.session.data,
-  //     },
-  //   ];
-  // }, []);
+Workouts.getInitialProps = async () => {
+  try {
+    const { data: exercises } = await getExercises(1);
+    const { data: sessions } = await getSessions();
 
-  // return (
-  //   <Stack direction="column">
-  //     <ul>
-  //       {data &&
-  //         data.map((p) => (
-  //           <li key={p.id}>
-  //             <BarChartB
-  //               stats={[
-  //                 {
-  //                   name: "Pull",
-  //                   value: p.pull_reps,
-  //                 },
-  //                 {
-  //                   name: "Push",
-  //                   value: p.push_reps,
-  //                 },
-  //                 {
-  //                   name: "Legs",
-  //                   value: p.leg_reps,
-  //                 },
-  //               ]}
-  //               subHeader={p.comments}
-  //               title={
-  //                 <Link href={`/workouts/${p.id}`}>
-  //                   {moment(p.date).calendar()}
-  //                 </Link>
-  //               }
-  //             />
-  //           </li>
-  //         ))}
-  //     </ul>
-  //     <pre>{JSON.stringify(pagination, null, 4)}</pre>
-  //   </Stack>
-  // );
-}
+    return { exercises, sessions };
+  } catch (error) {
+    return { error };
+  }
+};
 
-// This also gets called at build time
-// export async function getStaticProps() {
-//   // params contains the post `id`.
-//   // If the route is like /posts/1, then params.id is 1
-//   const query = qs.stringify(
-//     {
-//       populate: {
-//         exercises: {
-//           fields: ["name", "type"],
-//         },
-//         session: {
-//           fields: ["name", "description"],
-//         },
-//       },
-//       sort: ["date:desc"],
-//       fields: ["date", "comments", "pull_reps", "push_reps", "leg_reps"],
-//     },
-//     {
-//       encodeValuesOnly: true, // prettify URL
-//     }
-//   );
-
-//   const res = await fetcher(
-//     `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/workouts?${query}`
-//   );
-
-//   if (res.error) {
-//     return { props: { post: res.error } };
-//   }
-
-//   return { props: { post: res.data, pagination: res.meta } };
-// }
-
-interface IPost {
-  date: string;
-  comments: string;
-  pull_reps: number;
-  push_reps: number;
-  leg_reps: number;
-  [key: string]: any;
-}
-interface IPagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
+export default Workouts;

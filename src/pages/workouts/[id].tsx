@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import Button from "src/components/Button";
 import Stack from "src/components/Containers/Stack";
+import Dropdown from "src/components/Form/Dropdown";
 import Form from "src/components/Form/Form";
 import InputField from "src/components/Form/InputField";
 import TextAreaField from "src/components/Form/TextArea";
@@ -21,7 +22,6 @@ const Post: FC<IWorkout> = () => {
   const router = useRouter();
   const { id } = router.query;
   let { status, data, error, isFetching, isPreviousData } = useWorkout(id);
-  data = data.data;
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     // Stop the form from submitting and refreshing the page.
@@ -65,7 +65,6 @@ const Post: FC<IWorkout> = () => {
 
   return (
     <main>
-      {/* {data && <pre>{JSON.stringify(data, null, 4)}</pre>} */}
       {data && (
         <Form onSubmit={handleSubmit}>
           <Stack direction="column" spacing={3}>
@@ -77,7 +76,7 @@ const Post: FC<IWorkout> = () => {
                     type="date"
                     id="date"
                     name="date"
-                    value={data.attributes.date}
+                    value={data.data.attributes.date}
                   />
                 </div>
 
@@ -85,7 +84,25 @@ const Post: FC<IWorkout> = () => {
                   rows={4}
                   cols={50}
                   name={"comments"}
-                  value={data.attributes.comments}
+                  // value={data.data.attributes.comments}
+                />
+              </Stack>
+              <Stack>
+                <Dropdown
+                  isSearchable={true}
+                  isMulti={true}
+                  options={[
+                    { value: "green", label: "Green" },
+                    { value: "blue", label: "Blue" },
+                    { value: "red", label: "Red" },
+                    { value: "yellow", label: "Yellow" },
+                    { value: "orange", label: "Orange" },
+                    { value: "pink", label: "Pink" },
+                    { value: "purple", label: "Purple" },
+                    { value: "grey", label: "Grey" },
+                  ]}
+                  placeHolder={"Select an exercise"}
+                  onChange={() => console.log("on change event")}
                 />
               </Stack>
               <Stack direction="row" spacing={3}>
@@ -95,7 +112,7 @@ const Post: FC<IWorkout> = () => {
                   min={0}
                   name="push"
                   type="number"
-                  value={`${data.attributes.push_reps}`}
+                  value={`${data.data.attributes.push_reps}`}
                 />
                 <InputField
                   label="Pull Reps: "
@@ -103,14 +120,14 @@ const Post: FC<IWorkout> = () => {
                   min={0}
                   name="pull"
                   type="number"
-                  value={`${data.attributes.pull_reps}`}
+                  value={`${data.data.attributes.pull_reps}`}
                 />
                 <InputField
                   label="Leg Reps: "
                   min={0}
                   name="legs"
                   type="number"
-                  value={`${data.attributes.leg_reps}`}
+                  value={`${data.data.attributes.leg_reps}`}
                 />
               </Stack>
 

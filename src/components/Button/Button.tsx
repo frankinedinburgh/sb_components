@@ -37,4 +37,5 @@ interface IButton extends PropsWithChildren {
   size: "small" | "medium" | "large";
   onClick: () => void;
   rounded: boolean;
+  disabled: boolean;
 }
