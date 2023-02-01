@@ -2,8 +2,7 @@ import axios from "axios";
 import qs from "qs";
 
 axios.interceptors.request.use((config) => {
-  config.headers["Authorization"] =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc0MDMzMjQ1LCJleHAiOjE2NzY2MjUyNDV9.qMMLN8w-pA8dXYcStd9J7Qq7dXTY9GqoXMBSq1E5SDY";
+  config.headers["Authorization"] = `Bearer ${process.env.AUTH_TOKEN}`;
   return config;
 });
 
