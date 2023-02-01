@@ -1,4 +1,7 @@
 module.exports = {
+  experimental: {
+    appDir: true,
+  },
   webpackDevMiddleware: (config) => {
     config.watchOptions = {
       poll: 800,
