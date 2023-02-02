@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function DashboardLayout({
+export default function WorkoutsLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
