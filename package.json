@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
+    "test": "jest --verbose true --silent=false",
     "build": "next build",
     "start": "next start",
     "old:storybook": "start-storybook -p 6006",
@@ -17,14 +18,18 @@
     "@tanstack/react-query": "^4.16.1",
     "@tanstack/react-query-devtools": "^4.22.0",
     "axios": "^1.2.0",
+    "bootstrap": "^5.2.3",
     "js-cookie": "^3.0.1",
     "moment": "^2.29.4",
     "next": "^13.1.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
+    "@hookform/devtools": "^4.3.1",
     "@storybook/addon-a11y": "^6.5.12",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-docs": "^6.5.12",

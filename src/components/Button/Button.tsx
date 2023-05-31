@@ -25,7 +25,7 @@ export const Button: FC<Partial<IButton>> = ({
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
-      {children}
+      {children || "Submit"}
     </button>
   );
 };

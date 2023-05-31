@@ -75,7 +75,7 @@ export const getExercises = async (page) => {
       fields: ["name", "type"],
       pagination: {
         page,
-        pageSize: 7,
+        pageSize: 22,
       },
     },
     {
@@ -84,8 +84,8 @@ export const getExercises = async (page) => {
   );
 
   const { data } = await axios.get(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/exercises`
-    // `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/exercises?${query}`
+    // `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/exercises`
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/exercises?${query}`
   );
   return data;
 };
