@@ -13,7 +13,7 @@ axios.interceptors.request.use((config) => {
 });
 
 const getSessions = async () => {
-  const { data } = await axios.get(`${process.env.apiBaseUrl}/sessions`);
+  const { data } = await axios.get(`${process.env.API_BASE_URL}/sessions`);
   return data;
 };
 

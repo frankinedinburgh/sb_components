@@ -1,11 +1,12 @@
-import { BarChart } from "./BarChart";
+import { Story } from "@storybook/react";
+import BarChart, { IBarChart } from "./BarChart";
 
 export default {
   title: "Charts/A/BarChart",
   component: BarChart,
 };
 
-const Template = (args) => <BarChart {...args} />;
+const Template: Story<IBarChart> = (args) => <BarChart {...args} />;
 
 const stats = [
   { name: "Mon", value: 20 },

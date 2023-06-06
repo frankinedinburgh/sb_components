@@ -1,5 +1,12 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import styles from "./BarChart.module.css";
+
+export interface IBarGroup {
+  barHeight: number;
+  item: { name: string; value: number };
+  barColour: string;
+  barPadding?: number;
+}
 
 const BarGroup: FC<IBarGroup> = ({
   barHeight,
@@ -7,14 +14,18 @@ const BarGroup: FC<IBarGroup> = ({
   barColour,
   barPadding = 2,
 }) => {
-  let widthScale = (d) => d * 10;
-
-  let width = widthScale(item.value);
-  let yMid = barHeight * 0.5;
+  const widthScale = (d: number) => d * 10;
+  const width = widthScale(item.value);
+  const yMid = barHeight * 0.5;
 
   return (
     <g className={styles["bar-group"]}>
-      <text className="name-label" x="-6" y={yMid} alignmentBaseline="middle">
+      <text
+        className={styles["name-label"]}
+        x="-6"
+        y={yMid}
+        alignmentBaseline="middle"
+      >
         {item.name}
       </text>
       <rect
@@ -24,7 +35,7 @@ const BarGroup: FC<IBarGroup> = ({
         fill={barColour}
       />
       <text
-        className="value-label"
+        className={styles["value-label"]}
         x={width - 8}
         y={yMid}
         alignmentBaseline="middle"
@@ -35,7 +46,14 @@ const BarGroup: FC<IBarGroup> = ({
   );
 };
 
-export const BarChart: FC<IBarChart> = ({
+export interface IBarChart {
+  stats?: Array<{ name: string; value: number }>;
+  barColour?: string;
+  title?: string;
+  barHeight?: number;
+}
+
+const BarChart: FC<IBarChart> = ({
   stats = [],
   barColour = "#c3c3c3",
   title,
@@ -44,7 +62,7 @@ export const BarChart: FC<IBarChart> = ({
   return (
     <svg width="800" height="300">
       <g className={styles.container}>
-        <text className="title" x="10" y="30">
+        <text className={styles.title} x="10" y="30">
           {title}
         </text>
         <g className={styles.chart} transform="translate(100,60)">
@@ -62,8 +80,4 @@ export const BarChart: FC<IBarChart> = ({
   );
 };
 
-interface IBarChart extends IChart {
-  title?: string;
-  barColour?: string;
-  barHeight?: number;
-}
+export default BarChart;

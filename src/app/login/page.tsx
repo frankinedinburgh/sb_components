@@ -1,13 +1,13 @@
 "use client";
 
+import { DevTool } from "@hookform/devtools";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   const {
     register,
     handleSubmit,

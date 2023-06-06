@@ -1,27 +1,20 @@
-import { PropsWithChildren, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import styles from "./Layout.module.css";
 
-export const Layout = ({
-  navbar,
-  header,
-  aside,
-  children,
-  footer,
-}: ILayout) => {
+type Props = {
+  header?: ReactNode;
+  footer?: ReactNode;
+  children: ReactNode;
+};
+
+const Layout: React.FC<Props> = ({ header, footer, children }) => {
   return (
-    <div className={styles.grid}>
-      {!!navbar && navbar}
-      <header>{!!header && header}</header>
-      <main>{children}</main>
-      <aside>{!!aside && aside}</aside>
-      <footer>{!!footer && footer}</footer>
+    <div className={styles.container}>
+      {header && <header className={styles.header}>{header}</header>}
+      <main className={styles.main}>{children}</main>
+      {footer && <footer className={styles.footer}>{footer}</footer>}
     </div>
   );
 };
 
-interface ILayout extends PropsWithChildren {
-  navbar?: ReactNode;
-  footer?: ReactNode;
-  header?: ReactNode;
-  aside?: ReactNode;
-}
+export default Layout;

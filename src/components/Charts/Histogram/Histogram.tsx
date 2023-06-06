@@ -1,33 +1,48 @@
-import cn from "classnames";
-import style from "./Histogram.module.css";
+import React from "react";
+import styles from "./Histogram.module.css";
 
-export const Histogram = ({ stats }) => (
-  <Histogram.Container>
-    {stats.map((stat) => (
-      <Histogram.Item values={stat} />
-    ))}
-  </Histogram.Container>
-);
+export interface HistogramChartProps {
+  data: number[];
+  barColor: string;
+  barWidth: number;
+  barSpacing: number;
+}
 
-const HistogramContainer = ({ children }) => (
-  <div className={style.columns}>{children}</div>
-);
+const HistogramChart: React.FC<HistogramChartProps> = ({
+  data,
+  barColor,
+  barWidth,
+  barSpacing,
+}) => {
+  const maxValue = Math.max(...data);
 
-const HistogramItem = ({ values }) => {
-  const [A, B] = values;
   return (
-    <div className={style["column-container"]}>
-      <div
-        className={cn(style["column-bar"], style["series-b"])}
-        style={{ flexBasis: B }}
-      ></div>
-      <div
-        className={cn(style["column-bar"], style["series-a"])}
-        style={{ flexBasis: A }}
-      ></div>
-    </div>
+    <svg
+      className={styles.chart}
+      width={`${data.length * (barWidth + barSpacing)}`}
+      height={`${maxValue}`}
+    >
+      {data.map((value, index) => (
+        <g key={index}>
+          <rect
+            x={index * (barWidth + barSpacing)}
+            y={maxValue - value}
+            width={barWidth}
+            height={value}
+            fill={barColor}
+            className={styles.bar}
+          />
+          <text
+            x={index * (barWidth + barSpacing) + barWidth / 2}
+            y={maxValue + 15}
+            className={styles.label}
+          >
+            {value}
+          </text>
+        </g>
+      ))}
+    </svg>
   );
 };
 
-Histogram.Item = HistogramItem;
-Histogram.Container = HistogramContainer;
+export default HistogramChart;
