@@ -1,5 +1,5 @@
 import { Story } from "@storybook/react";
-import StackedChart, { IStackedChartProps } from "./StackedChart";
+import { IStackedChartProps, StackedChart } from "./StackedChart";
 
 export default {
   title: "Charts/StackedChart",

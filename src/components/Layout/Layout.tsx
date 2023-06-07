@@ -7,7 +7,7 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout: React.FC<Props> = ({ header, footer, children }) => {
+export const Layout: React.FC<Props> = ({ header, footer, children }) => {
   return (
     <div className={styles.container}>
       {header && <header className={styles.header}>{header}</header>}
@@ -16,5 +16,3 @@ const Layout: React.FC<Props> = ({ header, footer, children }) => {
     </div>
   );
 };
-
-export default Layout;

@@ -8,7 +8,7 @@ export interface HistogramChartProps {
   barSpacing: number;
 }
 
-const HistogramChart: React.FC<HistogramChartProps> = ({
+export const HistogramChart: React.FC<HistogramChartProps> = ({
   data,
   barColor,
   barWidth,
@@ -44,5 +44,3 @@ const HistogramChart: React.FC<HistogramChartProps> = ({
     </svg>
   );
 };
-
-export default HistogramChart;

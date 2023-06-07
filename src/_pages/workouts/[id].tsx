@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import Button from "src/components/Button";
 import Stack from "src/components/Containers/Stack";
-import Dropdown from "src/components/Form/Dropdown";
 import Form from "src/components/Form/Form";
 import InputField from "src/components/Form/InputField";
 import TextAreaField from "src/components/Form/TextArea";
@@ -87,24 +86,7 @@ const Post: FC<IWorkout> = () => {
                   // value={data.data.attributes.comments}
                 />
               </Stack>
-              <Stack>
-                <Dropdown
-                  isSearchable={true}
-                  isMulti={true}
-                  options={[
-                    { value: "green", label: "Green" },
-                    { value: "blue", label: "Blue" },
-                    { value: "red", label: "Red" },
-                    { value: "yellow", label: "Yellow" },
-                    { value: "orange", label: "Orange" },
-                    { value: "pink", label: "Pink" },
-                    { value: "purple", label: "Purple" },
-                    { value: "grey", label: "Grey" },
-                  ]}
-                  placeHolder={"Select an exercise"}
-                  onChange={() => console.log("on change event")}
-                />
-              </Stack>
+
               <Stack direction="row" spacing={3}>
                 <InputField
                   label="Push Reps: "

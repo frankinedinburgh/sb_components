@@ -1,5 +1,5 @@
 import { Story } from "@storybook/react";
-import BarChart, { IBarChart } from "./BarChart";
+import { BarChart, IBarChart } from "./BarChart";
 
 export default {
   title: "Charts/A/BarChart",

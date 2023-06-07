@@ -7,23 +7,23 @@ export const BarChart: FC<IProps> = ({ stats, title, subHeader }) => {
       {title}
       {subHeader && <p>{subHeader}</p>}
       <ul className={styles.chart_list}>
-        {stats &&
-          stats.map((d, idx) => {
-            if (d.value) {
-              return (
-                <li
-                  style={
-                    {
-                      gridColumn: `span ${d.value}`,
-                      gridRowStart: idx + 1,
-                    } as React.CSSProperties
-                  }
-                >
-                  {d.name}:<span>{d.value}</span>
-                </li>
-              );
-            }
-          })}
+        {stats?.map((d, idx) => {
+          if (d.value) {
+            return (
+              <li
+                key={idx}
+                style={
+                  {
+                    gridColumn: `span ${d.value}`,
+                    gridRowStart: idx + 1,
+                  } as React.CSSProperties
+                }
+              >
+                {d.name}:<span>{d.value}</span>
+              </li>
+            );
+          }
+        })}
       </ul>
     </section>
   );

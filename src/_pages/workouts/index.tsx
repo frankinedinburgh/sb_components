@@ -67,35 +67,7 @@ const Workouts = ({ exercises, sessions, error }) => {
   }
 
   return (
-    <Layout
-      aside={
-        <>
-          <div>
-            <h3>Exercises: </h3>
-            <ul>
-              {exercises &&
-                exercises.map(({ id, attributes: { name, type } }) => (
-                  <li key={id}>
-                    {id} - {name}
-                  </li>
-                ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3>Sessions: </h3>
-            <ul>
-              {sessions &&
-                sessions.map(({ id, attributes: { name, description } }) => (
-                  <li key={id}>
-                    {id} - {description}
-                  </li>
-                ))}
-            </ul>
-          </div>
-        </>
-      }
-    >
+    <Layout>
       <Stack direction="column">
         <ul>
           {isSuccess &&

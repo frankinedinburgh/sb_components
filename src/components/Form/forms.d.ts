@@ -1,11 +1,3 @@
-interface IDropdown {
-  placeHolder: string;
-  options: string[];
-  isMulti: boolean;
-  isSearchable: boolean;
-  onChange: (evt: React.ChangeEventHandler) => void;
-}
-
 interface IInputField {
   type: "text" | "number" | "password" | "submit";
   name: string;

@@ -1,6 +1,5 @@
-import React from "react";
-import { Story, Meta } from "@storybook/react";
-import HistogramChart, { HistogramChartProps } from "./Histogram";
+import { Meta, Story } from "@storybook/react";
+import { HistogramChart, HistogramChartProps } from "./Histogram";
 
 export default {
   title: "Charts/HistogramChart",

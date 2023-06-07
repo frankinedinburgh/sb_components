@@ -1,4 +1,4 @@
-import { CSSProperties, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import style from "./StackedChart.module.css";
 
 export interface IStat extends PropsWithChildren {
@@ -26,7 +26,7 @@ const StackedChartItem: React.FC<IStat> = ({ value, color, children }) => (
   </div>
 );
 
-const StackedChart: React.FC<IStackedChartProps> & {
+export const StackedChart: React.FC<IStackedChartProps> & {
   Item: React.FC<IStat>;
   Container: React.FC<PropsWithChildren>;
 } = ({ stats }) => {
@@ -47,5 +47,3 @@ const StackedChart: React.FC<IStackedChartProps> & {
 
 StackedChart.Item = StackedChartItem;
 StackedChart.Container = StackedChartContainer;
-
-export default StackedChart;

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./BarChart.module.css";
 
 export interface IBarGroup {
@@ -53,7 +53,7 @@ export interface IBarChart {
   barHeight?: number;
 }
 
-const BarChart: FC<IBarChart> = ({
+export const BarChart: FC<IBarChart> = ({
   stats = [],
   barColour = "#c3c3c3",
   title,
@@ -79,5 +79,3 @@ const BarChart: FC<IBarChart> = ({
     </svg>
   );
 };
-
-export default BarChart;

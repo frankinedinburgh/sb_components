@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-import { use } from "react";
 import style from "./Sessions.module.css";
 // https://www.w3schools.com/howto/default.asp
 
@@ -17,8 +16,8 @@ const getSessions = async () => {
   return data;
 };
 
-export default function Sessions() {
-  const { data: sessions } = use(getSessions());
+export default async function Sessions() {
+  const sessions = await getSessions();
 
   const onKeyUpHandler = (evt) => {
     console.log({ evt });
@@ -52,13 +51,12 @@ export default function Sessions() {
             Description
           </th>
         </tr>
-        {sessions &&
-          sessions.map(({ id, attributes: { description, name } }) => (
-            <tr key={id}>
-              <td>{name}</td>
-              <td>{description}</td>
-            </tr>
-          ))}
+        {sessions?.map(({ id, attributes: { description, name } }) => (
+          <tr key={id}>
+            <td>{name}</td>
+            <td>{description}</td>
+          </tr>
+        ))}
       </table>
     </>
   );
