@@ -1,7 +1,7 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 import styles from "./Layout.module.css";
 
-export const Layout = ({
+export const Layout: FC<ILayout>  = ({
   navbar,
   header,
   aside,
@@ -10,11 +10,11 @@ export const Layout = ({
 }: ILayout) => {
   return (
     <div className={styles.grid}>
-      {!!navbar && navbar}
-      <header>{!!header && header}</header>
+      {navbar && <div className={styles.navbar}>{navbar}</div>}
+      <header>{header}</header>
       <main>{children}</main>
-      <aside>{!!aside && aside}</aside>
-      <footer>{!!footer && footer}</footer>
+      {aside && <aside className={styles.aside}>{aside}</aside>}
+      <footer>{footer}</footer>
     </div>
   );
 };

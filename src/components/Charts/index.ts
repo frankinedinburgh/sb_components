@@ -6,3 +6,4 @@ export { BarChart as BarChartF } from "./F/BarChart";
 export { Histogram } from "./Histogram";
 export { PieChart } from "./PieChart";
 export { StackedChart } from "./StackedChart";
+

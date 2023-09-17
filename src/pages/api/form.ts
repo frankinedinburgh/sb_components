@@ -19,4 +19,4 @@ export default function handler(req, res) {
   res
     .status(200)
     .json({ data: `${date} \n ${comments} \n ${push} \n ${pull} \n ${legs}` });
-}
+ }
