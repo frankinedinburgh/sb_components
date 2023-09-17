@@ -31,8 +31,7 @@ function useWorkout(workoutId: number) {
 const Post: FC = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { status, data, error, isFetching, isPreviousData } = useWorkout(Number(id));
-  const workoutData = data?.data?.attributes;
+  let { status, data, error, isFetching, isPreviousData } = useWorkout(id);
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -71,25 +70,54 @@ const Post: FC = () => {
 
   return (
     <main>
-      {workoutData && (
+      {data && (
         <Form onSubmit={handleSubmit}>
           <Stack direction="column" spacing={3}>
-            <div>
-              <label htmlFor="date">Select Date:</label>
-              <input
-                type="date"
-                id="date"
-                name="date"
-                value={workoutData.date}
-              />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <Stack direction="column" spacing={3}>
+                <div>
+                  <label htmlFor="date">Select Date:</label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value={data.data.attributes.date}
+                  />
+                </div>
 
-            <TextAreaField
-              rows={4}
-              cols={50}
-              name="comments"
-              value={workoutData.comments}
-            />
+                <TextAreaField
+                  rows={4}
+                  cols={50}
+                  name={"comments"}
+                  // value={data.data.attributes.comments}
+                />
+              </Stack>
+
+              <Stack direction="row" spacing={3}>
+                <InputField
+                  label="Push Reps: "
+                  max={400}
+                  min={0}
+                  name="push"
+                  type="number"
+                  value={`${data.data.attributes.push_reps}`}
+                />
+                <InputField
+                  label="Pull Reps: "
+                  max={400}
+                  min={0}
+                  name="pull"
+                  type="number"
+                  value={`${data.data.attributes.pull_reps}`}
+                />
+                <InputField
+                  label="Leg Reps: "
+                  min={0}
+                  name="legs"
+                  type="number"
+                  value={`${data.data.attributes.leg_reps}`}
+                />
+              </Stack>
 
             <Stack direction="row" spacing={3}>
               <InputField

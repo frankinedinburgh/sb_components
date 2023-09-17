@@ -1,29 +1,19 @@
-import { Meta } from "@storybook/react";
-import { Histogram } from "./Histogram";
+import { Meta, Story } from "@storybook/react";
+import { HistogramChart, HistogramChartProps } from "./Histogram";
 
 export default {
-  title: "Charts/Histogram",
-  component: Histogram,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "Read more about this approach https://thomaswilburn.github.io/viz-book/css-flex.html",
-      },
-    },
-  },
+  title: "Charts/HistogramChart",
+  component: HistogramChart,
 } as Meta;
 
-const Template = (args) => <Histogram {...args} />;
+const Template: Story<HistogramChartProps> = (args) => (
+  <HistogramChart {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
-  stats: [
-    ["40%", "45%"],
-    ["50%", "15%"],
-    ["60%", "5%"],
-    ["92%", "5%"],
-    ["30%", "15%"],
-    ["10%", "45%"],
-  ],
+  data: [5, 10, 15, 7, 20, 8, 7, 9, 34],
+  barColor: "#c3c3c3",
+  barWidth: 30,
+  barSpacing: 1,
 };

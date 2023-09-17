@@ -1,48 +1,49 @@
-import { CSSProperties } from "react";
+import { PropsWithChildren } from "react";
 import style from "./StackedChart.module.css";
 
-export const StackedChart = ({ stats }) => {
-  const total = [...stats.map(({ value }) => value)].reduce(
-    (acc, val) => acc + +val,
-    0
-  );
+export interface IStat extends PropsWithChildren {
+  value: number;
+  color: string;
+}
 
-  const percentage = (val) => Math.floor((val / total) * 100);
+export interface IStackedChartProps extends PropsWithChildren {
+  stats: IStat[];
+}
 
-  return (
-    <StackedChart.Container>
-      {stats.map((stat) => (
-        <StackedChart.Item
-          color={stat.color}
-          value={`${percentage(stat.value)}%`}
-        >
-          {percentage(stat.value)}%
-        </StackedChart.Item>
-      ))}
-    </StackedChart.Container>
-  );
-};
-
-const StackedContainer = ({ children }) => (
+const StackedChartContainer: React.FC<PropsWithChildren> = ({ children }) => (
   <div className={style.row}>
     <div className={style.label}>Reps: </div>
     <div className={style["bar-container"]}>{children}</div>
   </div>
 );
 
-const StackedItem = ({ value, color, children }) => (
+const StackedChartItem: React.FC<IStat> = ({ value, color, children }) => (
   <div
     className={style.bar}
-    style={
-      {
-        flexBasis: value,
-        backgroundColor: color,
-      } as CSSProperties
-    }
+    style={{ flexBasis: `${value}%`, backgroundColor: color }}
   >
     {children}
   </div>
 );
 
-StackedChart.Item = StackedItem;
-StackedChart.Container = StackedContainer;
+export const StackedChart: React.FC<IStackedChartProps> & {
+  Item: React.FC<IStat>;
+  Container: React.FC<PropsWithChildren>;
+} = ({ stats }) => {
+  const total = stats.reduce((acc, { value }) => acc + value, 0);
+
+  const getPercentage = (val: number) => Math.floor((val / total) * 100);
+
+  return (
+    <StackedChart.Container>
+      {stats.map((stat) => (
+        <StackedChart.Item key={stat.color} {...stat}>
+          {getPercentage(stat.value)}%
+        </StackedChart.Item>
+      ))}
+    </StackedChart.Container>
+  );
+};
+
+StackedChart.Item = StackedChartItem;
+StackedChart.Container = StackedChartContainer;

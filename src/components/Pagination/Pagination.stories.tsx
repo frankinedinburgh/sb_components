@@ -12,9 +12,9 @@ const Template = (args) => <Pagination {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  currentPage: 1,
-  totalPages: 10,
-  onPageChange: (page) => {
-    console.log(`Page changed to ${page}`);
-  },
+  className: "pagination-bar",
+  currentPage: 2,
+  totalCount: 108,
+  pageSize: 10,
+  onPageChange: (page) => console.log({ page }),
 };

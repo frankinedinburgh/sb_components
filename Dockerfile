@@ -1,7 +1,17 @@
-# https://www.dpoindexter.com/garden/using-docker-for-react-storybook/
-FROM node:16.3.0-alpine
-WORKDIR /usr/src/app
+# Use an official Node.js runtime as the base image
+FROM node:18-alpine
+RUN mkdir -p /app
+
+WORKDIR /app
+
 COPY . .
+
 RUN npm install
+
+RUN npm run build
+
+EXPOSE 3000
+
+# Set the command to run your Next.js application
 CMD [ "npm", "run", "dev" ]
 

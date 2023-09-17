@@ -1,10 +1,116 @@
-.active {
-  background-color: #04aa6d;
-  color: white;
+.navigationBar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 1rem;
+  background-color: #f2f2f2;
+  padding: 1rem;
+  align-items: center;
 }
 
-.split {
-  float: right;
-  background-color: #04aa6d;
-  color: white;
+.navList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  grid-gap: 1rem;
+  justify-content: start;
+}
+
+.navList > :not(:last-child) {
+  grid-column: auto;
+}
+
+.link {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.active {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.login {
+  justify-self: end;
+}
+
+.hamburgerMenu {
+  display: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburgerIcon {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #333;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.hamburgerIcon:before,
+.hamburgerIcon:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #333;
+  transition: transform 0.3s ease-in-out;
+}
+/* Hamburger menu icon */
+.hamburgerIcon:before {
+  top: -6px;
+}
+
+.hamburgerIcon:after {
+  top: 6px;
+}
+
+.hamburgerIcon.open {
+  transform: rotate(45deg);
+}
+
+.hamburgerIcon.open:before {
+  transform: rotate(-45deg) translate(-6px, 0);
+}
+
+.hamburgerIcon.open:after {
+  transform: rotate(-45deg) translate(6px, 0);
+}
+
+@media screen and (max-width: 768px) {
+  .hamburgerMenu {
+    display: block;
+  }
+
+  .navigationBar {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .navList {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navList.open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login {
+    display: block;
+  }
 }

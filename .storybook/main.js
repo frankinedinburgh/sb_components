@@ -28,6 +28,6 @@ module.exports = {
   typescript: { reactDocgen: "none" },
   env: (config) => ({
     ...config,
-    apiBaseUrl: "http://warm-basin-81949.herokuapp.com/api",
+    API_BASE_URL: "http://warm-basin-81949.herokuapp.com/api",
   }),
 };

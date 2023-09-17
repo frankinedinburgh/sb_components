@@ -1,4 +1,5 @@
-import { StackedChart } from "./StackedChart";
+import { Story } from "@storybook/react";
+import { IStackedChartProps, StackedChart } from "./StackedChart";
 
 export default {
   title: "Charts/StackedChart",
@@ -13,7 +14,9 @@ export default {
   },
 };
 
-const Template = (args) => <StackedChart {...args} />;
+const Template: Story<IStackedChartProps> = (args) => (
+  <StackedChart {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -29,10 +32,6 @@ Default.args = {
     {
       color: "#A0E4CB",
       value: 11,
-    },
-    {
-      color: "#CFF5E7",
-      value: 60,
     },
   ],
 };

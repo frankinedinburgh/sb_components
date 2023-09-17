@@ -1,0 +1,31 @@
+.progressHeader {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.progressHeader h2 {
+  text-align: center;
+}
+
+.progressContainer {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+.progressBar {
+  height: 8px;
+  width: 0%;
+}
+
+.progressContent {
+  overflow-y: auto;
+  padding: 100px 0;
+  margin: 50px auto 0 auto;
+  width: 80%;
+  height: 100vh;
+  scrollbar-width: none;
+}

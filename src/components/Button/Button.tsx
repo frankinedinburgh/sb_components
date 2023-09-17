@@ -25,7 +25,7 @@ export const Button: FC<Partial<IButton>> = ({
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
-      {children}
+      {children || "Submit"}
     </button>
   );
 };
@@ -37,4 +37,5 @@ interface IButton extends PropsWithChildren {
   size: "small" | "medium" | "large";
   onClick: () => void;
   rounded: boolean;
+  disabled: boolean;
 }

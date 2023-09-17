@@ -1,4 +1,5 @@
 import * as React from "react";
+import { PropsWithChildren } from "react";
 
 import styles from "./Grid.module.css";
 
@@ -19,7 +20,7 @@ type GridJustify =
 
 type GridSizes = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-interface GridProps {
+interface GridProps extends PropsWithChildren {
   alignItems?: GridItemsAlignment;
   column?: boolean;
   expanded?: boolean;
@@ -30,7 +31,7 @@ interface GridProps {
   sm?: GridSizes;
 }
 
-const Grid: React.SFC<GridProps> = (props) => {
+const Grid: React.FC<GridProps> = (props) => {
   const { alignItems, children, column, expanded, justify, lg, md, row, sm } =
     props;
 
